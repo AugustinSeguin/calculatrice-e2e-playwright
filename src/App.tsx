@@ -1,10 +1,9 @@
 import "./App.css";
 import { useCallback, useState } from "react";
 
-
-const sum = (a: number, b: number) => a - b;
+const sum = (a: number, b: number) => a + b;
 const multiplication = (a: number, b: number) => a * b;
-const soustraction = (a: number, b: number) => a + b;
+const soustraction = (a: number, b: number) => a - b;
 
 interface IOperation {
   func: (a: number, b: number) => number;
@@ -28,27 +27,25 @@ function App() {
   const [chiffre, updateChiffre] = useState<number | undefined>(undefined);
   const [operation, updateOp] = useState<Operation | undefined>(undefined);
 
-  const handleNumClick = useCallback((num: number) => {
-    let myNum = num
-    if(operation){
-      if(chiffre){
-        updateChiffre(chiffre * 10 + myNum)
+  const handleNumClick = useCallback(
+    (num: number) => {
+      let myNum = num;
+      if (operation) {
+        if (chiffre || chiffre === 0) {
+          updateChiffre(chiffre * 10 + myNum);
+        } else {
+          updateChiffre(myNum);
+        }
+      } else {
+        if (currentValue || currentValue === 0) {
+          updateCurrent(currentValue * 10 + myNum);
+        } else {
+          updateCurrent(myNum);
+        }
       }
-      else {
-        updateChiffre(myNum)
-        console.log("1", 1)
-      }
-    }
-    else {
-      if(currentValue){
-        updateCurrent(currentValue * 10 + myNum)
-      }
-      else {
-        updateCurrent(myNum)
-        console.log("2", 2)
-      }
-    }
-  }, [currentValue, operation, chiffre])
+    },
+    [currentValue, operation, chiffre]
+  );
 
   return (
     <div className="App">
@@ -60,20 +57,29 @@ function App() {
             currentValue && operation && (chiffre || chiffre === 0)
               ? chiffre
               : ""
-          }
-        `}
+          }`}
         </div>
         <div>
           {Object.keys(operations).map((opName) => (
-            <button onClick={() => updateOp(opName as Operation)}>{opName}</button>
+            <button
+              key={opName}
+              id={opName}
+              onClick={() => updateOp(opName as Operation)}
+            >
+              {operations[opName as Operation].symbol}
+            </button>
           ))}
         </div>
         <div className="numbers">
           {new Array(10)
             .fill("")
-            .map((e, i) => i)
+            .map((_, i) => i)
             .map((e) => (
-              <button id={e.toString()} onClick={() => handleNumClick(e)}>
+              <button
+                key={e}
+                id={`num-${e}`} // Préfixe ajouté pour rendre les IDs valides
+                onClick={() => handleNumClick(e)}
+              >
                 {e}
               </button>
             ))}
@@ -81,8 +87,12 @@ function App() {
         <button
           className="btnEqual"
           onClick={() => {
-            if ((currentValue && operation && chiffre) || chiffre === 0) {
-              const res = operations[operation!].func(currentValue!, chiffre);
+            if (
+              (currentValue || currentValue === 0) &&
+              operation &&
+              (chiffre || chiffre === 0)
+            ) {
+              const res = operations[operation].func(currentValue, chiffre);
               updateCurrent(res);
               updateChiffre(undefined);
               updateOp(undefined);
