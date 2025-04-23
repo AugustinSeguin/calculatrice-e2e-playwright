@@ -39,7 +39,7 @@ test("click on all operators", async ({ page }) => {
 
   await page.locator("#multiplication").click();
 
-  await page.locator("#=").click();
+  await page.locator(".btnEqual").click();
 
   await expect(page.locator(".screen")).toHaveText("0");
 });
@@ -47,13 +47,13 @@ test("click on all operators", async ({ page }) => {
 test("click on + 3 = ", async ({ page }) => {
   await page.locator("#plus").click();
   await page.locator("#3").click();
-  await page.locator("#=").click();
+  await page.locator(".btnEqual").click();
 
   await expect(page.locator(".screen")).toHaveText("3");
 });
 
 test("click on equals", async ({ page }) => {
-  await page.locator("#=").click();
+  await page.locator(".btnEqual").click();
 
   await expect(page.locator(".screen")).toHaveText("0");
 });

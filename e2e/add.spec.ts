@@ -9,7 +9,7 @@ test.describe("Sum positive numbers", () => {
     await page.locator("#1").click();
     await page.locator("#sum").click();
     await page.locator("#1").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("2");
   });
 });
@@ -20,7 +20,7 @@ test.describe("Sum with a negative number (first number)", () => {
     await page.locator("#1").click();
     await page.locator("#sum").click();
     await page.locator("#1").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("0");
   });
 });
@@ -31,7 +31,7 @@ test.describe("Sum with a negative number (second number)", () => {
     await page.locator("#sum").click();
     await page.locator("#soustraction").click();
     await page.locator("#1").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("0");
   });
 });
@@ -43,7 +43,7 @@ test.describe("Sum with two negative numbers", () => {
     await page.locator("#sum").click();
     await page.locator("#soustraction").click();
     await page.locator("#1").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("-2");
   });
 });

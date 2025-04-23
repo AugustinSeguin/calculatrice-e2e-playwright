@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173/");
+  await page.goto("http://localhost:5173/");
 });
 
 test.describe("Subtraction positive numbers", () => {
@@ -9,7 +9,7 @@ test.describe("Subtraction positive numbers", () => {
     await page.locator("#5").click();
     await page.locator("#soustraction").click();
     await page.locator("#3").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("2");
   });
 });
@@ -20,7 +20,7 @@ test.describe("Subtraction with a negative number (first number)", () => {
     await page.locator("#5").click();
     await page.locator("#soustraction").click();
     await page.locator("#3").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("-8");
   });
 });
@@ -31,7 +31,7 @@ test.describe("Subtraction with a negative number (second number)", () => {
     await page.locator("#soustraction").click();
     await page.locator("#soustraction").click();
     await page.locator("#3").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("8");
   });
 });
@@ -43,7 +43,7 @@ test.describe("Subtraction with two negative numbers", () => {
     await page.locator("#soustraction").click();
     await page.locator("#soustraction").click();
     await page.locator("#3").click();
-    await page.locator("#=").click();
+    await page.locator(".btnEqual").click();
     await expect(page.locator(".screen")).toHaveText("-2");
   });
 });
