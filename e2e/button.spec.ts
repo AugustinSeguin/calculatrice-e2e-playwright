@@ -3,7 +3,6 @@ import { test, expect } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:5173/");
 });
-test.setTimeout(120_000);
 
 test.describe("Test to click only on buttons without doing any operation", () => {
   test("click on all numbers", async ({ page }) => {

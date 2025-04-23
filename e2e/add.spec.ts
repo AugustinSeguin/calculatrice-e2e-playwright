@@ -3,7 +3,6 @@ import { test, expect } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:5173/");
 });
-test.setTimeout(120_000);
 
 test.describe("Sum positive numbers", () => {
   test("1 + 1 = 2", async ({ page }) => {
@@ -45,6 +44,5 @@ test.describe("Sum with two negative numbers", () => {
     await page.locator("#soustraction").click();
     await page.locator("#num-1").click();
     await page.locator(".btnEqual").click();
-    await expect(page.locator(".screen")).toHaveText("-2");
-  });
+    await expect(page.locator(".screen")).toHaveText("-2", { timeout: 100000 });  });
 });

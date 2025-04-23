@@ -3,7 +3,6 @@ import { test, expect } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:5173/");
 });
-test.setTimeout(120_000);
 
 test.describe("Subtraction positive numbers", () => {
   test("5 - 3 = 2", async ({ page }) => {

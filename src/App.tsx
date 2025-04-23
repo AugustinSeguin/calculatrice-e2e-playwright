@@ -77,7 +77,7 @@ function App() {
             .map((e) => (
               <button
                 key={e}
-                id={`num-${e}`} // Préfixe ajouté pour rendre les IDs valides
+                id={`num-${e}`} 
                 onClick={() => handleNumClick(e)}
               >
                 {e}

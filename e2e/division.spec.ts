@@ -3,7 +3,6 @@ import { test, expect } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:5173/");
 });
-test.setTimeout(120_000);
 
 test.describe("Division positive numbers", () => {
   test("8 / 2 = 4", async ({ page }) => {
